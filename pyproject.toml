@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gdb-ssh-mcp"
+version = "0.1.0"
+description = "MCP server that drives a remote gdb over SSH."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "PyYAML>=6.0",
+]
+
+[project.scripts]
+gdb-ssh-mcp = "gdb_ssh_mcp.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

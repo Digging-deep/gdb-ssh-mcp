@@ -1,0 +1,23 @@
+# gdb-ssh-mcp 配置示例
+
+# 复制为 ~/.config/gdb-ssh-mcp/config.yaml 并按需修改。
+# 敏感字段（host/user/key）只保留在本机，请勿提交进版本库。
+
+ssh:
+  host: 10.0.0.5            # 目标机器地址
+  user: wmz                 # 登录用户
+  port: 22                  # 可选，默认 22
+  key: ~/.ssh/id_ed25519    # 可选，缺省走 ssh 默认（含 ~/.ssh/config）
+  proxy_jump: jump.corp.com # 可选，需要跳板机时
+  control_persist: 600      # 可选，连接复用时长（秒）
+
+target:
+  program: /path/to/apexdb  # 远程机器上的二进制路径
+  args: ["--config", "xx.conf"]  # 可选，传给被调试程序的参数
+  cwd: /path/to/workspace   # 可选，工作目录
+  gdb: gdb                  # 可选，默认 gdb
+
+gdb:
+  tmux_session: gdb-ssh     # 可选，tmux 会话名
+  max_output_chars: 20000   # 可选，单次输出最大字符数
+  command_timeout_sec: 30   # 可选，等命令完成的超时（秒）
